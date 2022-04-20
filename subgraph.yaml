@@ -1,0 +1,213 @@
+specVersion: 0.0.2
+repository: https://github.com/Impermax-Finance/impermax-x-uniswap-v2-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ImpermaxFactory
+    network: matic
+    source:
+      address: "0xBB92270716C8c424849F17cCc12F4F24AD4064D6"
+      abi: ImpermaxFactory
+      startBlock: 14868433
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/impermaxFactory.ts
+      entities:
+        - ImpermaxFactory
+      abis:
+        - name: ImpermaxFactory
+          file: ./abis/ImpermaxFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: UniswapFactory
+          file: ./abis/uniswapFactory.json
+        - name: Pair
+          file: ./abis/pair.json
+        - name: FarmingPool
+          file: ./abis/FarmingPool.json
+        - name: Distributor
+          file: ./abis/Distributor.json
+        - name: Collateral
+          file: ./abis/Collateral.json
+        - name: Borrowable
+          file: ./abis/Borrowable.json
+        - name: StakedLPToken01
+          file: ./abis/StakedLPToken01.json
+        - name: StakingRewards
+          file: ./abis/StakingRewards.json
+      eventHandlers:
+        - event: LendingPoolInitialized(indexed address,indexed address,indexed address,address,address,address,uint256)
+          handler: handleLendingPoolInitialized
+templates:
+  - kind: ethereum/contract
+    name: Pair
+    network: matic
+    source:
+      abi: Pair
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/uniswapPair.ts
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: Pair
+          file: ./abis/pair.json
+        - name: UniswapFactory
+          file: ./abis/uniswapFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: PoolToken
+          file: ./abis/PoolToken.json
+      eventHandlers:
+        - event: Sync(uint112,uint112)
+          handler: handleSync1
+  - kind: ethereum/contract
+    name: Collateral
+    network: matic
+    source:
+      abi: Collateral
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/collateral.ts
+      entities:
+        - Collateral
+      abis:
+       - name: Collateral
+         file: ./abis/Collateral.json
+      eventHandlers:
+        - event: Sync(uint256)
+          handler: handleSync
+        - event: NewSafetyMargin(uint256)
+          handler: handleNewSafetyMargin
+        - event: NewLiquidationIncentive(uint256)
+          handler: handleNewLiquidationIncentive
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+  - kind: ethereum/contract
+    name: Borrowable
+    network: matic
+    source:
+      abi: Borrowable
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/borrowable.ts
+      entities:
+        - Borrowable
+      abis:
+       - name: Borrowable
+         file: ./abis/Borrowable.json
+       - name: FarmingPool
+         file: ./abis/FarmingPool.json
+       - name: Distributor
+         file: ./abis/Distributor.json
+      eventHandlers:
+        - event: Sync(uint256)
+          handler: handleSync
+        - event: AccrueInterest(uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: Borrow(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: Liquidate(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleLiquidate
+        - event: CalculateKinkBorrowRate(uint256)
+          handler: handleCalculateKinkBorrowRate
+        - event: CalculateBorrowRate(uint256)
+          handler: handleCalculateBorrowRate
+        - event: NewReserveFactor(uint256)
+          handler: handleNewReserveFactor
+        - event: NewKinkUtilizationRate(uint256)
+          handler: handleNewKinkUtilizationRate
+        - event: NewBorrowTracker(address)
+          handler: handleNewBorrowTracker
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+  - kind: ethereum/contract
+    name: FarmingPool
+    network: matic
+    source:
+      abi: FarmingPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/farmingPool.ts
+      entities:
+        - FarmingPool
+      abis:
+       - name: FarmingPool
+         file: ./abis/FarmingPool.json
+       - name: Distributor
+         file: ./abis/Distributor.json
+      eventHandlers:
+        - event: Advance(uint256,uint256)
+          handler: handleAdvance
+  - kind: ethereum/contract
+    name: StakedLPToken01
+    network: matic
+    source:
+      abi: StakedLPToken01
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/uniswapPair.ts
+      entities:
+        - Pair
+      abis:
+        - name: StakedLPToken01
+          file: ./abis/StakedLPToken01.json
+        - name: Pair
+          file: ./abis/pair.json
+        - name: UniswapFactory
+          file: ./abis/uniswapFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: PoolToken
+          file: ./abis/PoolToken.json
+      eventHandlers:
+        - event: Sync(uint256)
+          handler: handleSync2
+  - kind: ethereum/contract
+    name: StakingRewards
+    network: matic
+    source:
+      abi: StakingRewards
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/stakingRewards.ts
+      entities:
+        - StakingRewards
+      abis:
+        - name: StakingRewards
+          file: ./abis/StakingRewards.json
+      eventHandlers:
+        - event: RewardAdded(uint256,uint256)
+          handler: handleRewardAdded
+        - event: Staked(indexed address,uint256)
+          handler: handleStaked
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
