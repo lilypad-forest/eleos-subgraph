@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, store, Address, log } from '@graphprotocol/graph-ts'
 import { Pair, LendingPool, Collateral, Borrowable, Token, Bundle } from '../types/schema'
-import { Pair as PairContract, Sync as Sync1, Mint as Mint1 } from '../types/templates/Pair/Pair'
+import { UniswapPair as PairContract, Sync as Sync1, Mint as Mint1 } from '../types/templates/UniswapPair/UniswapPair'
 import { StakedLPToken01 as StakedLPTokenContract, Sync as Sync2, Mint as Mint2 } from '../types/templates/StakedLPToken01/StakedLPToken01'
 import { getEthPriceInUSD, findEthPerToken } from './pricing'
 import { convertTokenToDecimal, ADDRESS_ZERO, ONE_BI, ZERO_BD, BI_18, updateLendingPoolUSD } from './helpers'

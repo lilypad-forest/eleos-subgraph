@@ -7,8 +7,8 @@ import {
   loadOrCreatePair,
   convertTokenToDecimal,
 } from './helpers'
-import { Pair as PairContract } from '../types/templates/Pair/Pair'
-import { ERC20 } from '../types/templates/Pair/ERC20'
+import { UniswapPair as PairContract } from '../types/templates/UniswapPair/UniswapPair'
+import { ERC20 } from '../types/templates/UniswapPair/ERC20'
 
 function getRelativePrice(pairAddress: Address, tokenAddress: String): BigDecimal {
   let pairContract = PairContract.bind(pairAddress)

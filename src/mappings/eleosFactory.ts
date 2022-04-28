@@ -1,10 +1,10 @@
 import { BigInt, BigDecimal, log } from "@graphprotocol/graph-ts"
 import {
   LendingPoolInitialized
-} from "../types/ImpermaxFactory/ImpermaxFactory"
+} from "../types/Factory/EleosFactory"
 import { IMPERMAX_FACTORY_ADDRESS } from './constants'
-import { ImpermaxFactory, Pair, Bundle, Token, LendingPool, Collateral, Borrowable } from "../types/schema"
-import { Pair as PairTemplate, Borrowable as BorrowableTemplate, Collateral as CollateralTemplate } from '../types/templates'
+import { EleosFactory, Pair, Bundle, Token, LendingPool, Collateral, Borrowable } from "../types/schema"
+import { UniswapPair as PairTemplate, Borrowable as BorrowableTemplate, Collateral as CollateralTemplate } from '../types/templates'
 import {
   ONE_BD,
   ZERO_BD,
@@ -15,9 +15,9 @@ import {
 
 
 export function handleLendingPoolInitialized(event: LendingPoolInitialized): void {
-  let impermaxFactory = ImpermaxFactory.load(IMPERMAX_FACTORY_ADDRESS)
+  let impermaxFactory = EleosFactory.load(IMPERMAX_FACTORY_ADDRESS)
   if (impermaxFactory === null) {
-	impermaxFactory = new ImpermaxFactory(IMPERMAX_FACTORY_ADDRESS)
+	impermaxFactory = new EleosFactory(IMPERMAX_FACTORY_ADDRESS)
     impermaxFactory.totalBalanceUSD = ZERO_BD
     impermaxFactory.totalSupplyUSD = ZERO_BD
     impermaxFactory.totalBorrowsUSD = ZERO_BD

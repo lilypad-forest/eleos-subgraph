@@ -1,19 +1,19 @@
 /* eslint-disable prefer-const */
 import { log, BigInt, BigDecimal, Address } from '@graphprotocol/graph-ts'
-import { ERC20 } from '../types/ImpermaxFactory/ERC20'
-import { ERC20SymbolBytes } from '../types/ImpermaxFactory/ERC20SymbolBytes'
-import { ERC20NameBytes } from '../types/ImpermaxFactory/ERC20NameBytes'
+import { ERC20 } from '../types/Factory/ERC20'
+import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
+import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
 import { IMPERMAX_FACTORY_ADDRESS, UNISWAP_FACTORY_ADDRESS } from './constants'
-import { ImpermaxFactory, Borrowable, Collateral, LendingPool, Token, Pair, Distributor, User, CollateralPosition, SupplyPosition, BorrowPosition, StakingRewards } from "../types/schema"
-import { UniswapFactory as UniswapFactoryContract } from '../types/ImpermaxFactory/UniswapFactory'
-import { Pair as PairContract } from '../types/ImpermaxFactory/Pair'
-import { FarmingPool as FarmingPoolContract } from '../types/ImpermaxFactory/FarmingPool'
-import { Distributor as DistributorContract } from '../types/ImpermaxFactory/Distributor'
-import { Collateral as CollateralContract } from '../types/ImpermaxFactory/Collateral'
-import { Borrowable as BorrowableContract } from '../types/ImpermaxFactory/Borrowable'
-import { StakedLPToken01 as StakedLPTokenContract } from '../types/ImpermaxFactory/StakedLPToken01'
-import { StakingRewards as StakingRewardsContract } from '../types/ImpermaxFactory/StakingRewards'
-import { Pair as PairTemplate } from '../types/templates'
+import { EleosFactory, Borrowable, Collateral, LendingPool, Token, Pair, Distributor, User, CollateralPosition, SupplyPosition, BorrowPosition, StakingRewards } from "../types/schema"
+import { UniswapFactory as UniswapFactoryContract } from '../types/Factory/UniswapFactory'
+import { UniswapPair as PairContract } from '../types/Factory/UniswapPair'
+import { FarmingPool as FarmingPoolContract } from '../types/Factory/FarmingPool'
+import { Distributor as DistributorContract } from '../types/Factory/Distributor'
+import { Collateral as CollateralContract } from '../types/Factory/Collateral'
+import { Borrowable as BorrowableContract } from '../types/Factory/Borrowable'
+import { StakedLPToken01 as StakedLPTokenContract } from '../types/Factory/StakedLPToken01'
+import { StakingRewards as StakingRewardsContract } from '../types/Factory/StakingRewards'
+import { UniswapPair as PairTemplate } from '../types/templates'
 import { StakedLPToken01 as StakedLPTokenTemplate } from '../types/templates'
 import { StakingRewards as StakingRewardsTemplate } from '../types/templates'
 
@@ -333,7 +333,7 @@ export function updateLendingPoolUSD(pairAddress: String): void {
   lendingPool.totalBorrowsUSD = borrowable0.totalBorrowsUSD.plus(borrowable1.totalBorrowsUSD)
   lendingPool.save()
   
-  let impermaxFactory = ImpermaxFactory.load(IMPERMAX_FACTORY_ADDRESS)
+  let impermaxFactory = EleosFactory.load(IMPERMAX_FACTORY_ADDRESS)
   if (impermaxFactory === null) return
   impermaxFactory.totalBalanceUSD = impermaxFactory.totalBalanceUSD.plus(lendingPool.totalBalanceUSD).minus(prevTotalBalanceUSD)
   impermaxFactory.totalSupplyUSD = impermaxFactory.totalSupplyUSD.plus(lendingPool.totalSupplyUSD).minus(prevTotalSupplyUSD)
