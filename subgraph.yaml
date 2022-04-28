@@ -1,25 +1,25 @@
 specVersion: 0.0.2
-repository: https://github.com/Impermax-Finance/impermax-x-uniswap-v2-subgraph
+repository: https://github.com/lilypad-forest/eleos-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: ImpermaxFactory
-    network: matic
+    name: Factory
+    network: rinkeby
     source:
-      address: "0xBB92270716C8c424849F17cCc12F4F24AD4064D6"
-      abi: ImpermaxFactory
+      address: "0x142E5E493c803852D51526c5556a0Ee2FAFAC0D9"
+      abi: EleosFactory
       startBlock: 14868433
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
-      file: ./src/mappings/impermaxFactory.ts
+      file: ./src/mappings/eleosFactory.ts
       entities:
-        - ImpermaxFactory
+        - Factory
       abis:
-        - name: ImpermaxFactory
-          file: ./abis/ImpermaxFactory.json
+        - name: EleosFactory
+          file: ./abis/EleosFactory.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes
@@ -47,10 +47,10 @@ dataSources:
           handler: handleLendingPoolInitialized
 templates:
   - kind: ethereum/contract
-    name: Pair
-    network: matic
+    name: UniswapPair
+    network: rinkeby
     source:
-      abi: Pair
+      abi: UniswapPair
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -61,9 +61,9 @@ templates:
         - Token
       abis:
         - name: Pair
-          file: ./abis/pair.json
+          file: ./abis/UniswapPair.json
         - name: UniswapFactory
-          file: ./abis/uniswapFactory.json
+          file: ./abis/UniswapFactory.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes
@@ -77,7 +77,7 @@ templates:
           handler: handleSync1
   - kind: ethereum/contract
     name: Collateral
-    network: matic
+    network: rinkeby
     source:
       abi: Collateral
     mapping:
@@ -101,7 +101,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: Borrowable
-    network: matic
+    network: rinkeby
     source:
       abi: Borrowable
     mapping:
@@ -141,7 +141,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: FarmingPool
-    network: matic
+    network: rinkeby
     source:
       abi: FarmingPool
     mapping:
@@ -161,7 +161,7 @@ templates:
           handler: handleAdvance
   - kind: ethereum/contract
     name: StakedLPToken01
-    network: matic
+    network: rinkeby
     source:
       abi: StakedLPToken01
     mapping:
@@ -191,7 +191,7 @@ templates:
           handler: handleSync2
   - kind: ethereum/contract
     name: StakingRewards
-    network: matic
+    network: rinkeby
     source:
       abi: StakingRewards
     mapping:

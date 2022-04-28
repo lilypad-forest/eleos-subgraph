@@ -1,25 +1,25 @@
 specVersion: 0.0.2
-repository: https://github.com/Impermax-Finance/impermax-x-uniswap-v2-subgraph
+repository: https://github.com/eleos-Finance/eleos-x-uniswap-v2-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: ImpermaxFactory
+    name: EleosFactory
     network: {{network}}
     source:
-      address: "{{impermaxFactory}}"
-      abi: ImpermaxFactory
-      startBlock: {{impermaxFactoryStartBlock}}
+      address: "{{EleosFactory}}"
+      abi: EleosFactory
+      startBlock: {{eleosFactoryStartBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
-      file: ./src/mappings/impermaxFactory.ts
+      file: ./src/mappings/eleosFactory.ts
       entities:
-        - ImpermaxFactory
+        - eleosFactory
       abis:
-        - name: ImpermaxFactory
-          file: ./abis/ImpermaxFactory.json
+        - name: eleosFactory
+          file: ./abis/EleosFactory.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes

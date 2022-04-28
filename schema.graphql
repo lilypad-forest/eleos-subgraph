@@ -1,5 +1,5 @@
-type ImpermaxFactory @entity {
-  # impermaxFactory address
+type EleosFactory @entity {
+  # eleosFactory address
   id: ID!
 
   # derived liquidity
