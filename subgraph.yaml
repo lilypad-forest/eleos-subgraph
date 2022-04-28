@@ -1,22 +1,22 @@
 specVersion: 0.0.2
-repository: https://github.com/lilypad-forest/eleos-subgraph
+repository: https://github.com/eleos-Finance/eleos-x-uniswap-v2-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Factory
+    name: EleosFactory
     network: rinkeby
     source:
-      address: "0x142E5E493c803852D51526c5556a0Ee2FAFAC0D9"
+      address: ""
       abi: EleosFactory
-      startBlock: 10585434
+      startBlock: 9719652
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/eleosFactory.ts
       entities:
-        - Factory
+        - eleosFactory
       abis:
         - name: EleosFactory
           file: ./abis/EleosFactory.json
@@ -47,10 +47,10 @@ dataSources:
           handler: handleLendingPoolInitialized
 templates:
   - kind: ethereum/contract
-    name: UniswapPair
+    name: Pair
     network: rinkeby
     source:
-      abi: UniswapPair
+      abi: Pair
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
