@@ -15,7 +15,7 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 impermax-finance/impermax-x-uniswap-v2"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.20.0",
-    "@graphprotocol/graph-ts": "0.20.0"
+    "@graphprotocol/graph-cli": "0.29.0",
+    "@graphprotocol/graph-ts": "0.25.0"
   }
 }

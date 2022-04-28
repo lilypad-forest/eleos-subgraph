@@ -300,23 +300,23 @@ export function loadOrCreateBorrowPosition(borrowable: Address, user: Address): 
 }
 
 export function updateLendingPoolUSD(pairAddress: String): void {
-  let pair = Pair.load(pairAddress)
+  let pair = Pair.load(pairAddress)!
 
-  let lendingPool = LendingPool.load(pairAddress)
+  let lendingPool = LendingPool.load(pairAddress)!
   if (lendingPool === null) return // lendingPool doesn't exist yet for this pair
   
   let prevTotalBalanceUSD = lendingPool.totalBalanceUSD
   let prevTotalSupplyUSD = lendingPool.totalSupplyUSD
   let prevTotalBorrowsUSD = lendingPool.totalBorrowsUSD
     
-  let collateral = Collateral.load(lendingPool.collateral)
+  let collateral = Collateral.load(lendingPool.collateral)!
   collateral.totalBalanceUSD = collateral.totalBalance.times(pair.derivedUSD)
   collateral.save()
   
-  let borrowable0 = Borrowable.load(lendingPool.borrowable0)
-  let borrowable1 = Borrowable.load(lendingPool.borrowable1)
-  let token0 = Token.load(borrowable0.underlying)
-  let token1 = Token.load(borrowable1.underlying)
+  let borrowable0 = Borrowable.load(lendingPool.borrowable0)!
+  let borrowable1 = Borrowable.load(lendingPool.borrowable1)!
+  let token0 = Token.load(borrowable0.underlying)!
+  let token1 = Token.load(borrowable1.underlying)!
   
   borrowable0.totalBalanceUSD = borrowable0.totalBalance.times(token0.derivedUSD)
   borrowable0.totalBorrowsUSD = borrowable0.totalBorrows.times(token0.derivedUSD)

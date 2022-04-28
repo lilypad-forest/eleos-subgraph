@@ -14,7 +14,7 @@ import {
 
 
 export function handleAdvance(event: Advance): void {
-  let farmingPool = FarmingPool.load(event.address.toHexString())
+  let farmingPool = FarmingPool.load(event.address.toHexString())!
   farmingPool.epochAmount = convertTokenToDecimal(event.params.epochAmount, BI_18)
   farmingPool.epochBegin = event.params.epochBegin
   farmingPool.sharePercentage = fetchDistributorSharePercentage(Address.fromString(farmingPool.distributor), Address.fromString(farmingPool.id))

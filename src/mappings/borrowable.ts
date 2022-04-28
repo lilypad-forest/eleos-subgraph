@@ -34,12 +34,13 @@ import {
   loadOrCreateBorrowPosition,
 } from './helpers'
 
-function getDecimals(borrowable: Borrowable | null): BigInt {
-  return Token.load(borrowable.underlying).decimals
+function getDecimals(borrowable: Borrowable): BigInt {
+  let token = Token.load(borrowable.underlying)!
+  return token.decimals
 }
 
 export function handleSync(event: Sync): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.totalBalance = convertTokenToDecimal(event.params.totalBalance, getDecimals(borrowable))
   borrowable.exchangeRate = fetchBorrowableExchangeRate(event.address)
   borrowable.save()
@@ -47,7 +48,7 @@ export function handleSync(event: Sync): void {
 }
 
 export function handleAccrueInterest(event: AccrueInterest): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.totalBorrows = convertTokenToDecimal(event.params.totalBorrows, getDecimals(borrowable))
   borrowable.borrowIndex = convertTokenToDecimal(event.params.borrowIndex, BI_18)
   borrowable.accrualTimestamp = event.block.timestamp
@@ -55,7 +56,7 @@ export function handleAccrueInterest(event: AccrueInterest): void {
 }
 
 export function handleBorrow(event: Borrow): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.totalBorrows = convertTokenToDecimal(event.params.totalBorrows, getDecimals(borrowable))
   borrowable.save()
   
@@ -66,7 +67,7 @@ export function handleBorrow(event: Borrow): void {
 }
 
 export function handleLiquidate(event: Liquidate): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.totalBorrows = convertTokenToDecimal(event.params.totalBorrows, getDecimals(borrowable))
   borrowable.save()
   
@@ -77,32 +78,32 @@ export function handleLiquidate(event: Liquidate): void {
 }
 
 export function handleCalculateKinkBorrowRate(event: CalculateKinkBorrowRate): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.kinkBorrowRate = convertTokenToDecimal(event.params.kinkBorrowRate, BI_18)
   borrowable.save()
 }
 
 export function handleCalculateBorrowRate(event: CalculateBorrowRate): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.borrowRate = convertTokenToDecimal(event.params.borrowRate, BI_18)
   borrowable.save()
 }
 
 export function handleNewReserveFactor(event: NewReserveFactor): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.reserveFactor = convertTokenToDecimal(event.params.newReserveFactor, BI_18)
   borrowable.save()
 }
 
 export function handleNewKinkUtilizationRate(event: NewKinkUtilizationRate): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.kinkUtilizationRate = convertTokenToDecimal(event.params.newKinkUtilizationRate, BI_18)
   borrowable.save()
 }
 
 export function handleNewBorrowTracker(event: NewBorrowTracker): void {
   let farmingPoolAddress = event.params.newBorrowTracker
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   borrowable.farmingPool = farmingPoolAddress.toHexString()
   borrowable.save()
   if (farmingPoolAddress.toHexString() === ADDRESS_ZERO) return
@@ -124,7 +125,7 @@ export function handleNewBorrowTracker(event: NewBorrowTracker): void {
 }
 
 export function handleTransfer(event: Transfer): void {
-  let borrowable = Borrowable.load(event.address.toHexString())
+  let borrowable = Borrowable.load(event.address.toHexString())!
   let fromSupplyPosition = loadOrCreateSupplyPosition(event.address, event.params.from)
   let toSupplyPosition = loadOrCreateSupplyPosition(event.address, event.params.to)
   let value = convertTokenToDecimal(event.params.value, getDecimals(borrowable))

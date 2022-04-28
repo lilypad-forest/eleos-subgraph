@@ -12,7 +12,7 @@ dataSources:
       startBlock: 14868433
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/eleosFactory.ts
       entities:
@@ -53,7 +53,7 @@ templates:
       abi: UniswapPair
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/uniswapPair.ts
       entities:
@@ -82,7 +82,7 @@ templates:
       abi: Collateral
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/collateral.ts
       entities:
@@ -106,7 +106,7 @@ templates:
       abi: Borrowable
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/borrowable.ts
       entities:
@@ -146,7 +146,7 @@ templates:
       abi: FarmingPool
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/farmingPool.ts
       entities:
@@ -166,7 +166,7 @@ templates:
       abi: StakedLPToken01
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/uniswapPair.ts
       entities:
@@ -196,7 +196,7 @@ templates:
       abi: StakingRewards
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./src/mappings/stakingRewards.ts
       entities:

@@ -18,7 +18,7 @@ import {
 
 
 export function handleSync(event: Sync): void {
-  let collateral = Collateral.load(event.address.toHexString())
+  let collateral = Collateral.load(event.address.toHexString())!
   collateral.totalBalance = convertTokenToDecimal(event.params.totalBalance, BI_18)
   collateral.exchangeRate = fetchCollateralExchangeRate(event.address)
   collateral.save()
@@ -26,14 +26,14 @@ export function handleSync(event: Sync): void {
 }
 
 export function handleNewSafetyMargin(event: NewSafetyMargin): void {
-  let collateral = Collateral.load(event.address.toHexString())
+  let collateral = Collateral.load(event.address.toHexString())!
   let safetyMarginSqrt = convertTokenToDecimal(event.params.newSafetyMarginSqrt, BI_18)
   collateral.safetyMargin = safetyMarginSqrt.times(safetyMarginSqrt)
   collateral.save()
 }
 
 export function handleNewLiquidationIncentive(event: NewLiquidationIncentive): void {
-  let collateral = Collateral.load(event.address.toHexString())
+  let collateral = Collateral.load(event.address.toHexString())!
   collateral.liquidationIncentive = convertTokenToDecimal(event.params.newLiquidationIncentive, BI_18)
   collateral.save()
 }

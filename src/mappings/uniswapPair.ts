@@ -31,8 +31,8 @@ function _handleSync(pair: Pair, reserve0: BigInt, reserve1: BigInt, totalSupply
   //pair.save()
   //if (pair.syncCount as i32 % 10 !== 1) return
   
-  let token0 = Token.load(pair.token0)
-  let token1 = Token.load(pair.token1)
+  let token0 = Token.load(pair.token0)!
+  let token1 = Token.load(pair.token1)!
   
   pair.reserve0 = convertTokenToDecimal(reserve0, token0.decimals)
   pair.reserve1 = convertTokenToDecimal(reserve1, token1.decimals)
@@ -45,7 +45,7 @@ function _handleSync(pair: Pair, reserve0: BigInt, reserve1: BigInt, totalSupply
   pair.save()
 
   // update ETH price now that reserves could have changed
-  let bundle = Bundle.load('1')
+  let bundle = Bundle.load('1')!
   bundle.ethPrice = getEthPriceInUSD()
   bundle.save()
 
