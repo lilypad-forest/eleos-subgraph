@@ -9,7 +9,7 @@ dataSources:
     source:
       address: "0x142E5E493c803852D51526c5556a0Ee2FAFAC0D9"
       abi: EleosFactory
-      startBlock: 14868433
+      startBlock: 10585434
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
