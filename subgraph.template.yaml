@@ -7,7 +7,7 @@ dataSources:
     name: EleosFactory
     network: {{network}}
     source:
-      address: "{{EleosFactory}}"
+      address: "{{eleosFactory}}"
       abi: EleosFactory
       startBlock: {{eleosFactoryStartBlock}}
     mapping:
@@ -47,10 +47,10 @@ dataSources:
           handler: handleLendingPoolInitialized
 templates:
   - kind: ethereum/contract
-    name: Pair
+    name: UniswapPair
     network: {{network}}
     source:
-      abi: Pair
+      abi: UniswapPair
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

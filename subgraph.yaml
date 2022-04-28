@@ -7,7 +7,7 @@ dataSources:
     name: EleosFactory
     network: rinkeby
     source:
-      address: ""
+      address: "0x142E5E493c803852D51526c5556a0Ee2FAFAC0D9"
       abi: EleosFactory
       startBlock: 9719652
     mapping:
@@ -47,10 +47,10 @@ dataSources:
           handler: handleLendingPoolInitialized
 templates:
   - kind: ethereum/contract
-    name: Pair
+    name: UniswapPair
     network: rinkeby
     source:
-      abi: Pair
+      abi: UniswapPair
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

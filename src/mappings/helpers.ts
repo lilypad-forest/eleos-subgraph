@@ -3,7 +3,7 @@ import { log, BigInt, BigDecimal, Address } from '@graphprotocol/graph-ts'
 import { ERC20 } from '../types/Factory/ERC20'
 import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
-import { IMPERMAX_FACTORY_ADDRESS, UNISWAP_FACTORY_ADDRESS } from './constants'
+import { ELEOS_FACTORY_ADDRESS, UNISWAP_FACTORY_ADDRESS } from './constants'
 import { EleosFactory, Borrowable, Collateral, LendingPool, Token, Pair, Distributor, User, CollateralPosition, SupplyPosition, BorrowPosition, StakingRewards } from "../types/schema"
 import { UniswapFactory as UniswapFactoryContract } from '../types/Factory/UniswapFactory'
 import { UniswapPair as PairContract } from '../types/Factory/UniswapPair'
@@ -333,7 +333,7 @@ export function updateLendingPoolUSD(pairAddress: String): void {
   lendingPool.totalBorrowsUSD = borrowable0.totalBorrowsUSD.plus(borrowable1.totalBorrowsUSD)
   lendingPool.save()
   
-  let impermaxFactory = EleosFactory.load(IMPERMAX_FACTORY_ADDRESS)
+  let impermaxFactory = EleosFactory.load(ELEOS_FACTORY_ADDRESS)
   if (impermaxFactory === null) return
   impermaxFactory.totalBalanceUSD = impermaxFactory.totalBalanceUSD.plus(lendingPool.totalBalanceUSD).minus(prevTotalBalanceUSD)
   impermaxFactory.totalSupplyUSD = impermaxFactory.totalSupplyUSD.plus(lendingPool.totalSupplyUSD).minus(prevTotalSupplyUSD)
