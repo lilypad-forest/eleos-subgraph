@@ -5,5 +5,5 @@
   "uniswapFactory": "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f",
   "uniswapFactoryStartBlock": "6430279",
   "weth": "0xc778417e063141139fce010982780140aa0cd5ab",
-  "stablePair": "0x78ab2e85eaf22dc7b6981e54432e17521bdadc23"
+  "stableToken": "0xeb8f08a975ab53e34d8a0330e0d34de942c95926"
 }
