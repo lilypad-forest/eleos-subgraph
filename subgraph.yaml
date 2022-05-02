@@ -38,10 +38,8 @@ dataSources:
           file: ./abis/Collateral.json
         - name: Borrowable
           file: ./abis/Borrowable.json
-        - name: StakedLPToken01
-          file: ./abis/StakedLPToken01.json
-        - name: StakingRewards
-          file: ./abis/StakingRewards.json
+        - name: VaultToken
+          file: ./abis/VaultToken.json
       eventHandlers:
         - event: LendingPoolInitialized(indexed address,indexed address,indexed address,address,address,address,uint256)
           handler: handleLendingPoolInitialized
@@ -64,6 +62,8 @@ templates:
           file: ./abis/UniswapPair.json
         - name: UniswapFactory
           file: ./abis/UniswapFactory.json
+        - name: UniswapRouter
+          file: ./abis/UniswapRouter.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes
@@ -160,10 +160,10 @@ templates:
         - event: Advance(uint256,uint256)
           handler: handleAdvance
   - kind: ethereum/contract
-    name: StakedLPToken01
+    name: VaultToken
     network: rinkeby
     source:
-      abi: StakedLPToken01
+      abi: VaultToken
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -172,12 +172,14 @@ templates:
       entities:
         - Pair
       abis:
-        - name: StakedLPToken01
-          file: ./abis/StakedLPToken01.json
-        - name: UniswapPair
+        - name: VaultToken
+          file: ./abis/VaultToken.json
+        - name: Pair
           file: ./abis/UniswapPair.json
         - name: UniswapFactory
           file: ./abis/UniswapFactory.json
+        - name: UniswapRouter
+          file: ./abis/UniswapRouter.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes
@@ -189,25 +191,3 @@ templates:
       eventHandlers:
         - event: Sync(uint256)
           handler: handleSync2
-  - kind: ethereum/contract
-    name: StakingRewards
-    network: rinkeby
-    source:
-      abi: StakingRewards
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/stakingRewards.ts
-      entities:
-        - StakingRewards
-      abis:
-        - name: StakingRewards
-          file: ./abis/StakingRewards.json
-      eventHandlers:
-        - event: RewardAdded(uint256,uint256)
-          handler: handleRewardAdded
-        - event: Staked(indexed address,uint256)
-          handler: handleStaked
-        - event: Withdrawn(indexed address,uint256)
-          handler: handleWithdrawn
