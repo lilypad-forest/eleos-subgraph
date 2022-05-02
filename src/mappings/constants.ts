@@ -1,3 +1,3 @@
 export const ELEOS_FACTORY_ADDRESS = "0x142e5e493c803852d51526c5556a0ee2fafac0d9";
 export const WETH_ADDRESS = "0xc778417e063141139fce010982780140aa0cd5ab";
-export const STABLE_TOKEN = "0xeb8f08a975ab53e34d8a0330e0d34de942c95926";
+export const STABLE_TOKEN = "0x4dbcdf9b62e891a7cec5a2568c3f4faf9e8abe2b";

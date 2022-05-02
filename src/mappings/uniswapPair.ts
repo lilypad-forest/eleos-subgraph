@@ -18,6 +18,7 @@ import {
   BI_18,
   ZERO_BI
 } from "./helpers";
+import { log } from '@graphprotocol/graph-ts';
 
 export function handleSync1(event: Sync1): void {
   if (event.block.number.lt(BigInt.fromI32(12000000))) {
@@ -96,8 +97,10 @@ function _handleSync(
 
   pair.save();
 
+  log.info('testing...', []);
   let ethPrice = getEthPriceInUSD(uniswapFactoryContract);
 
+  log.info('whats the eth price {}', [ethPrice.toString()])
   token0.derivedETH = findEthPerToken(uniswapFactoryContract, token0 as Token);
   token1.derivedETH = findEthPerToken(uniswapFactoryContract, token1 as Token);
   token0.derivedUSD = token0.derivedETH.times(ethPrice);
