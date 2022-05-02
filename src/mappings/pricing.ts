@@ -14,7 +14,6 @@ function getRelativePrice(
   tokenAddress: String
 ): BigDecimal {
   let pairContract = PairContract.bind(pairAddress);
-  log.critical('oh shit', []);
   let reserves = pairContract.getReserves();
   let token0 = pairContract.token0();
   let token1 = pairContract.token1();
@@ -35,7 +34,6 @@ function getRelativePrice(
   } else {
     return reserve0.div(reserve1);
   }
-  return ONE_BD;
 }
 
 export function getEthPriceInUSD(
@@ -45,11 +43,9 @@ export function getEthPriceInUSD(
     Address.fromString(STABLE_TOKEN),
     Address.fromString(WETH_ADDRESS)
   );
-  log.warning('Pair address that probably shouldnt be 0: {}', [pairAddress.toHexString()]);
   if (pairAddress.toHexString() == ADDRESS_ZERO) {
-    throw new Error('Why is the stable address O!?!?!?!?!?!');
+    throw new Error('ERROR: Why is the stable address O');
   };
-  throw new Error('Why is the stable address O!?!?!?!?!?!');
   return getRelativePrice(pairAddress, WETH_ADDRESS);
 }
 
@@ -57,7 +53,6 @@ export function findEthPerToken(
   uniswapFactoryContract: UniswapFactoryContract,
   token: Token
 ): BigDecimal {
-  log.error('whats tthe WETH AT {}', [WETH_ADDRESS.toString()])
   if (token.id == WETH_ADDRESS) {
     return ONE_BD;
   }

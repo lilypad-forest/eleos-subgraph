@@ -21,9 +21,6 @@ import {
 import { log } from '@graphprotocol/graph-ts';
 
 export function handleSync1(event: Sync1): void {
-  if (event.block.number.lt(BigInt.fromI32(12000000))) {
-    return;
-  }
   let pair = Pair.load(event.address.toHex()) as Pair;
   let pairContract = PairContract.bind(event.address);
   let uniswapFactoryAddress = pairContract.factory();
@@ -40,9 +37,6 @@ export function handleSync1(event: Sync1): void {
 }
 
 export function handleSync2(event: Sync2): void {
-  if (event.block.number.lt(BigInt.fromI32(12000000))) {
-    return;
-  }
   let pair = Pair.load(event.address.toHex()) as Pair;
   let vaultTokenContract = VaultTokenContract.bind(event.address);
   let uniswapRouterAddress = vaultTokenContract.router();
@@ -97,12 +91,12 @@ function _handleSync(
 
   pair.save();
 
-  log.info('testing...', []);
   let ethPrice = getEthPriceInUSD(uniswapFactoryContract);
 
-  log.info('whats the eth price {}', [ethPrice.toString()])
+  log.info('whats the eth price {}', [ethPrice.toString()]);
   token0.derivedETH = findEthPerToken(uniswapFactoryContract, token0 as Token);
   token1.derivedETH = findEthPerToken(uniswapFactoryContract, token1 as Token);
+  log.info('and derived eth ? {}', [token0.derivedETH.toString()]);
   token0.derivedUSD = token0.derivedETH.times(ethPrice);
   token1.derivedUSD = token1.derivedETH.times(ethPrice);
   token0.save();

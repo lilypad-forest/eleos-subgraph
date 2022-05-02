@@ -28,6 +28,8 @@ dataSources:
           file: ./abis/ERC20NameBytes.json
         - name: UniswapFactory
           file: ./abis/UniswapFactory.json
+        - name: UniswapRouter
+          file: ./abis/UniswapRouter.json
         - name: UniswapPair
           file: ./abis/UniswapPair.json
         - name: FarmingPool
@@ -174,7 +176,7 @@ templates:
       abis:
         - name: VaultToken
           file: ./abis/VaultToken.json
-        - name: Pair
+        - name: UniswapPair
           file: ./abis/UniswapPair.json
         - name: UniswapFactory
           file: ./abis/UniswapFactory.json
