@@ -3,21 +3,23 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen --output-dir src/types/",
-    "build": "graph build",    
+    "build": "graph build",
     "prepare:mainnet": "mustache network/mainnet.json subgraph.template.yaml > subgraph.yaml && mustache network/mainnet.json src/mappings/constants.template.ts > src/mappings/constants.ts",
     "prepare:ropsten": "mustache network/ropsten.json subgraph.template.yaml > subgraph.yaml && mustache network/ropsten.json src/mappings/constants.template.ts > src/mappings/constants.ts",
     "prepare:polygon": "mustache network/matic.json subgraph.template.yaml > subgraph.yaml && mustache network/matic.json src/mappings/constants.template.ts > src/mappings/constants.ts",
     "prepare:rinkeby": "mustache network/rinkeby.json subgraph.template.yaml > subgraph.yaml && mustache network/rinkeby.json src/mappings/constants.template.ts > src/mappings/constants.ts",
+    "prepare:cronos": "mustache network/cronos.json subgraph.template.yaml > subgraph.yaml && mustache network/cronos.json src/mappings/constants.template.ts > src/mappings/constants.ts",
     "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ impermax-finance/impermax-x-uniswap-v2",
     "deploy:ropsten": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ impermax-finance/impermax-x-uniswap-v2-ropsten",
     "deploy:polygon": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ impermax-finance/impermax-x-uniswap-v2-polygon",
     "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ lilypad-forest/eleosRinkeby",
-    "create-local": "graph create --node http://localhost:8020/ lilypad-forest/eleosRinkeby",
+    "create-local": "graph create --node http://localhost:8020/ lilypad-forest/amplifyCronos",
     "remove-local": "graph remove --node http://localhost:8020/ lilypad-forest/eleosRinkeby",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lilypad-forest/eleosRinkeby"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lilypad-forest/amplifyCronos"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.29.0",
-    "@graphprotocol/graph-ts": "0.25.0"
+    "@graphprotocol/graph-ts": "0.25.0",
+    "mustache": "^4.2.0"
   }
 }
