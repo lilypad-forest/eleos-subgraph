@@ -4,22 +4,22 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: EleosFactory
-    network: rinkeby
+    name: AmplifyFactory
+    network: cronosmainnet_25-1
     source:
-      address: "0x142e5e493c803852d51526c5556a0ee2fafac0d9"
-      abi: EleosFactory
-      startBlock: 10516775
+      address: "0x21Fb78D8a8c910876fc37bD0D7887F3d814E54ec"
+      abi: AmplifyFactory
+      startBlock: 2694282
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/eleosFactory.ts
+      file: ./src/mappings/amplifyFactory.ts
       entities:
-        - eleosFactory
+        - amplifyFactory
       abis:
-        - name: EleosFactory
-          file: ./abis/EleosFactory.json
+        - name: AmplifyFactory
+          file: ./abis/AmplifyFactory.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes
@@ -48,7 +48,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: UniswapPair
-    network: rinkeby
+    network: cronosmainnet_25-1
     source:
       abi: UniswapPair
     mapping:
@@ -79,7 +79,7 @@ templates:
           handler: handleSync1
   - kind: ethereum/contract
     name: Collateral
-    network: rinkeby
+    network: cronosmainnet_25-1
     source:
       abi: Collateral
     mapping:
@@ -103,7 +103,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: Borrowable
-    network: rinkeby
+    network: cronosmainnet_25-1
     source:
       abi: Borrowable
     mapping:
@@ -143,7 +143,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: FarmingPool
-    network: rinkeby
+    network: cronosmainnet_25-1
     source:
       abi: FarmingPool
     mapping:
@@ -163,7 +163,7 @@ templates:
           handler: handleAdvance
   - kind: ethereum/contract
     name: VaultToken
-    network: rinkeby
+    network: cronosmainnet_25-1
     source:
       abi: VaultToken
     mapping:

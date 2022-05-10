@@ -4,22 +4,22 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: EleosFactory
+    name: AmplifyFactory
     network: {{network}}
     source:
-      address: "{{eleosFactory}}"
-      abi: EleosFactory
-      startBlock: {{eleosFactoryStartBlock}}
+      address: "{{amplifyFactory}}"
+      abi: AmplifyFactory
+      startBlock: {{amplifyFactoryStartBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
-      file: ./src/mappings/eleosFactory.ts
+      file: ./src/mappings/amplifyFactory.ts
       entities:
-        - eleosFactory
+        - amplifyFactory
       abis:
-        - name: EleosFactory
-          file: ./abis/EleosFactory.json
+        - name: AmplifyFactory
+          file: ./abis/AmplifyFactory.json
         - name: ERC20
           file: ./abis/ERC20.json
         - name: ERC20SymbolBytes

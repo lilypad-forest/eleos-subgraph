@@ -26,7 +26,7 @@
           "type": "address"
         },
         {
-          "internalType": "contract IEleosPriceOracle",
+          "internalType": "contract IAmplifyPriceOracle",
           "name": "_eleosPriceOracle",
           "type": "address"
         }
@@ -364,7 +364,7 @@
       "name": "eleosPriceOracle",
       "outputs": [
         {
-          "internalType": "contract IEleosPriceOracle",
+          "internalType": "contract IAmplifyPriceOracle",
           "name": "",
           "type": "address"
         }

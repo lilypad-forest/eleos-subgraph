@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "EleosPriceOracle",
-  "sourceName": "contracts/EleosPriceOracle.sol",
+  "contractName": "AmplifyPriceOracle",
+  "sourceName": "contracts/AmplifyPriceOracle.sol",
   "abi": [
     {
       "inputs": [],

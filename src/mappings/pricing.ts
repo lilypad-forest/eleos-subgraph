@@ -1,5 +1,5 @@
 import { Token } from "../types/schema";
-import { UniswapFactory as UniswapFactoryContract } from "../types/EleosFactory/UniswapFactory";
+import { UniswapFactory as UniswapFactoryContract } from "../types/AmplifyFactory/UniswapFactory";
 import { BigDecimal, Address, BigInt } from "@graphprotocol/graph-ts/index";
 import { ZERO_BD, ADDRESS_ZERO, ONE_BD } from "./helpers";
 import { WETH_ADDRESS, STABLE_TOKEN } from "./constants";

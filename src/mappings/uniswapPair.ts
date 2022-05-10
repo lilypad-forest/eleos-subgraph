@@ -1,6 +1,6 @@
 import { BigInt, BigDecimal, Address } from "@graphprotocol/graph-ts";
 import { Pair, Token } from "../types/schema";
-import { UniswapFactory as UniswapFactoryContract } from "../types/EleosFactory/UniswapFactory";
+import { UniswapFactory as UniswapFactoryContract } from "../types/AmplifyFactory/UniswapFactory";
 import { UniswapRouter as UniswapRouterContract } from "../types/templates/UniswapPair/UniswapRouter";
 import {
   UniswapPair as PairContract,

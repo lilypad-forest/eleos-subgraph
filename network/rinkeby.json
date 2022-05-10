@@ -1,7 +1,7 @@
 {
   "network": "rinkeby",
-  "eleosFactory": "0x142e5e493c803852d51526c5556a0ee2fafac0d9",
-  "eleosFactoryStartBlock": "10516775",
+  "amplifyFactory": "0x142e5e493c803852d51526c5556a0ee2fafac0d9",
+  "amplifyFactoryStartBlock": "10516775",
   "weth": "0xc778417e063141139fce010982780140aa0cd5ab",
   "stableToken": "0x4dbcdf9b62e891a7cec5a2568c3f4faf9e8abe2b"
 }

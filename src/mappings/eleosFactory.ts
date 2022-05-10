@@ -1,8 +1,8 @@
 import { BigDecimal } from "@graphprotocol/graph-ts";
-import { LendingPoolInitialized } from "../types/EleosFactory/EleosFactory";
-import { ELEOS_FACTORY_ADDRESS } from "./constants";
+import { LendingPoolInitialized } from "../types/AmplifyFactory/AmplifyFactory";
+import { AMPLIFY_FACTORY_ADDRESS } from "./constants";
 import {
-  EleosFactory,
+  AmplifyFactory,
   LendingPool,
   Collateral,
   Borrowable
@@ -16,14 +16,14 @@ import { ONE_BD, ZERO_BD, loadOrCreatePair } from "./helpers";
 export function handleLendingPoolInitialized(
   event: LendingPoolInitialized
 ): void {
-  let eleosFactory = EleosFactory.load(ELEOS_FACTORY_ADDRESS);
-  if (eleosFactory === null) {
-    eleosFactory = new EleosFactory(ELEOS_FACTORY_ADDRESS);
-    eleosFactory.totalBalanceUSD = ZERO_BD;
-    eleosFactory.totalSupplyUSD = ZERO_BD;
-    eleosFactory.totalBorrowsUSD = ZERO_BD;
+  let amplifyFactory = AmplifyFactory.load(AMPLIFY_FACTORY_ADDRESS);
+  if (amplifyFactory === null) {
+    amplifyFactory = new AmplifyFactory(AMPLIFY_FACTORY_ADDRESS);
+    amplifyFactory.totalBalanceUSD = ZERO_BD;
+    amplifyFactory.totalSupplyUSD = ZERO_BD;
+    amplifyFactory.totalBorrowsUSD = ZERO_BD;
   }
-  eleosFactory.save();
+  amplifyFactory.save();
 
   let pair = loadOrCreatePair(event.params.uniswapV2Pair);
 

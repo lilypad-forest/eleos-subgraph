@@ -1,10 +1,10 @@
 import { BigInt, BigDecimal, Address } from "@graphprotocol/graph-ts";
-import { ERC20 } from "../types/EleosFactory/ERC20";
-import { ERC20SymbolBytes } from "../types/EleosFactory/ERC20SymbolBytes";
-import { ERC20NameBytes } from "../types/EleosFactory/ERC20NameBytes";
-import { ELEOS_FACTORY_ADDRESS } from "./constants";
+import { ERC20 } from "../types/AmplifyFactory/ERC20";
+import { ERC20SymbolBytes } from "../types/AmplifyFactory/ERC20SymbolBytes";
+import { ERC20NameBytes } from "../types/AmplifyFactory/ERC20NameBytes";
+import { AMPLIFY_FACTORY_ADDRESS } from "./constants";
 import {
-  EleosFactory,
+  AmplifyFactory,
   Borrowable,
   Collateral,
   LendingPool,
@@ -16,12 +16,12 @@ import {
   SupplyPosition,
   BorrowPosition
 } from "../types/schema";
-import { UniswapPair as PairContract } from "../types/EleosFactory/UniswapPair";
-import { FarmingPool as FarmingPoolContract } from "../types/EleosFactory/FarmingPool";
-import { Distributor as DistributorContract } from "../types/EleosFactory/Distributor";
-import { Collateral as CollateralContract } from "../types/EleosFactory/Collateral";
-import { Borrowable as BorrowableContract } from "../types/EleosFactory/Borrowable";
-import { VaultToken as VaultTokenContract } from "../types/EleosFactory/VaultToken";
+import { UniswapPair as PairContract } from "../types/AmplifyFactory/UniswapPair";
+import { FarmingPool as FarmingPoolContract } from "../types/AmplifyFactory/FarmingPool";
+import { Distributor as DistributorContract } from "../types/AmplifyFactory/Distributor";
+import { Collateral as CollateralContract } from "../types/AmplifyFactory/Collateral";
+import { Borrowable as BorrowableContract } from "../types/AmplifyFactory/Borrowable";
+import { VaultToken as VaultTokenContract } from "../types/AmplifyFactory/VaultToken";
 import {
   VaultToken as VaultTokenTemplate,
   UniswapPair as PairTemplate
@@ -400,16 +400,16 @@ export function updateLendingPoolUSD(pairAddress: String): void {
   );
   lendingPool.save();
 
-  let eleosFactory = EleosFactory.load(ELEOS_FACTORY_ADDRESS);
-  if (eleosFactory === null) return;
-  eleosFactory.totalBalanceUSD = eleosFactory.totalBalanceUSD
+  let amplifyFactory = AmplifyFactory.load(AMPLIFY_FACTORY_ADDRESS);
+  if (amplifyFactory === null) return;
+  amplifyFactory.totalBalanceUSD = amplifyFactory.totalBalanceUSD
     .plus(lendingPool.totalBalanceUSD)
     .minus(prevTotalBalanceUSD);
-  eleosFactory.totalSupplyUSD = eleosFactory.totalSupplyUSD
+  amplifyFactory.totalSupplyUSD = amplifyFactory.totalSupplyUSD
     .plus(lendingPool.totalSupplyUSD)
     .minus(prevTotalSupplyUSD);
-  eleosFactory.totalBorrowsUSD = eleosFactory.totalBorrowsUSD
+  amplifyFactory.totalBorrowsUSD = amplifyFactory.totalBorrowsUSD
     .plus(lendingPool.totalBorrowsUSD)
     .minus(prevTotalBorrowsUSD);
-  eleosFactory.save();
+  amplifyFactory.save();
 }

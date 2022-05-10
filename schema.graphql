@@ -1,4 +1,4 @@
-type EleosFactory @entity {
+type AmplifyFactory @entity {
   # eleosFactory address
   id: ID!
 

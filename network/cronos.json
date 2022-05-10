@@ -1,8 +1,8 @@
 {
   "network": "cronosmainnet_25-1",
-  "eleosFactory": "0x21Fb78D8a8c910876fc37bD0D7887F3d814E54ec",
-  "eleosFactoryStartBlock": "2694282",
+  "amplifyFactory": "0x21Fb78D8a8c910876fc37bD0D7887F3d814E54ec",
+  "amplifyFactoryStartBlock": "2694282",
   "weth": "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23",
-  "stablePair": "0xa68466208f1a3eb21650320d2520ee8eba5ba623",
+  "stableCoin": "0xc21223249ca28397b4b6541dffaecc539bff0c59",
   "uniswapFactory": "0xd590cC180601AEcD6eeADD9B7f2B7611519544f4"
 }
