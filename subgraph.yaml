@@ -7,7 +7,7 @@ dataSources:
     name: AmplifyFactory
     network: cronosmainnet_25-1
     source:
-      address: "0x21Fb78D8a8c910876fc37bD0D7887F3d814E54ec"
+      address: "0xdC053862c28F5989B3570637342e62Bb50D490a9"
       abi: AmplifyFactory
       startBlock: 2694282
     mapping:
