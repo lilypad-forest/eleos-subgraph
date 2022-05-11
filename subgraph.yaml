@@ -5,7 +5,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: AmplifyFactory
-    network: cronosmainnet_25-1
+    network: cronos
     source:
       address: "0xdC053862c28F5989B3570637342e62Bb50D490a9"
       abi: AmplifyFactory
@@ -48,7 +48,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: UniswapPair
-    network: cronosmainnet_25-1
+    network: cronos
     source:
       abi: UniswapPair
     mapping:
@@ -79,7 +79,7 @@ templates:
           handler: handleSync1
   - kind: ethereum/contract
     name: Collateral
-    network: cronosmainnet_25-1
+    network: cronos
     source:
       abi: Collateral
     mapping:
@@ -103,7 +103,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: Borrowable
-    network: cronosmainnet_25-1
+    network: cronos
     source:
       abi: Borrowable
     mapping:
@@ -143,7 +143,7 @@ templates:
           handler: handleTransfer
   - kind: ethereum/contract
     name: FarmingPool
-    network: cronosmainnet_25-1
+    network: cronos
     source:
       abi: FarmingPool
     mapping:
@@ -163,7 +163,7 @@ templates:
           handler: handleAdvance
   - kind: ethereum/contract
     name: VaultToken
-    network: cronosmainnet_25-1
+    network: cronos
     source:
       abi: VaultToken
     mapping:

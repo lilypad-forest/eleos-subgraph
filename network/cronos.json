@@ -1,8 +1,8 @@
 {
-  "network": "cronosmainnet_25-1",
+  "network": "cronos",
   "amplifyFactory": "0xdC053862c28F5989B3570637342e62Bb50D490a9",
   "amplifyFactoryStartBlock": "2694282",
-  "weth": "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23",
-  "stableCoin": "0xc21223249ca28397b4b6541dffaecc539bff0c59",
+  "weth": "0x5c7f8a570d578ed84e63fdfa7b1ee72deae1ae23",
+  "stableToken": "0xc21223249ca28397b4b6541dffaecc539bff0c59",
   "uniswapFactory": "0xd590cC180601AEcD6eeADD9B7f2B7611519544f4"
 }

@@ -16,7 +16,7 @@
     "deploy:cronos": "echo 'WARNING DOES NOT WORK' && echo 'graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ lilypad-forest/amplifyCronos'",
     "create-local": "graph create --node http://localhost:8020/ lilypad-forest/amplifyCronos",
     "remove-local": "graph remove --node http://localhost:8020/ lilypad-forest/eleosRinkeby",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lilypad-forest/amplifyCronos"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 amplify-finance/amplify-x-uniswap-v2"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.29.0",
