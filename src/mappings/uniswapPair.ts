@@ -93,10 +93,8 @@ function _handleSync(
 
   let ethPrice = getEthPriceInUSD(uniswapFactoryContract);
 
-  log.info('whats the eth price {}', [ethPrice.toString()]);
   token0.derivedETH = findEthPerToken(uniswapFactoryContract, token0 as Token);
   token1.derivedETH = findEthPerToken(uniswapFactoryContract, token1 as Token);
-  log.info('and derived eth ? {}', [token0.derivedETH.toString()]);
   token0.derivedUSD = token0.derivedETH.times(ethPrice);
   token1.derivedUSD = token1.derivedETH.times(ethPrice);
   token0.save();
