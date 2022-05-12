@@ -10,6 +10,7 @@ import { ERC20 } from "../types/templates/UniswapPair/ERC20";
 import { log } from '@graphprotocol/graph-ts'
 
 const MEERKAT_ROUTER_ADDRESS = Address.fromString('0x145677FC4d9b8F19B5D56d1820c48e0443049a30');
+const VVS_FACTORY_CONTRACT = Address.fromString('0x3b44b2a187a7b3824131f8db5a74194d0a42fc15');
 
 function getRelativePrice(
   pairAddress: Address,
@@ -58,7 +59,7 @@ export function findEthPerToken(
   if (token.id == WETH_ADDRESS) {
     return ONE_BD;
   }
-  
+
   if (token.symbol == 'TIGER' || token.symbol == 'LION') {
     let uniswapRouter = UniswapRouterContract.bind(MEERKAT_ROUTER_ADDRESS);
     const outputAmount = BigInt.fromString('1000000000000');
@@ -75,6 +76,19 @@ export function findEthPerToken(
     return convertTokenToDecimal(
       inputAmount, BigInt.fromString('18')
     ).div(convertTokenToDecimal(outputAmount, BigInt.fromString('18')));
+  }
+
+  if (token.symbol == 'VVS') {
+    let uniswapFactory = UniswapFactoryContract.bind(VVS_FACTORY_CONTRACT);
+    let pairAddress = uniswapFactoryContract.getPair(
+      Address.fromString(token.id),
+      Address.fromString(WETH_ADDRESS)
+    );
+    if (pairAddress.toHexString() == ADDRESS_ZERO) {
+      return ZERO_BD;
+    } else {
+      return getRelativePrice(pairAddress, token.id);
+    }
   }
 
   let pairAddress = uniswapFactoryContract.getPair(
