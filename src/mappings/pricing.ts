@@ -79,16 +79,12 @@ export function findEthPerToken(
   }
 
   if (token.symbol == 'VVS') {
-    let uniswapFactory = UniswapFactoryContract.bind(VVS_FACTORY_CONTRACT);
+    let uniswapFactoryContract = UniswapFactoryContract.bind(VVS_FACTORY_CONTRACT);
     let pairAddress = uniswapFactoryContract.getPair(
       Address.fromString(token.id),
       Address.fromString(WETH_ADDRESS)
     );
-    if (pairAddress.toHexString() == ADDRESS_ZERO) {
-      return ZERO_BD;
-    } else {
-      return getRelativePrice(pairAddress, token.id);
-    }
+    return getRelativePrice(pairAddress, token.id);
   }
 
   let pairAddress = uniswapFactoryContract.getPair(
